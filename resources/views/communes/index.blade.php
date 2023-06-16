@@ -69,9 +69,9 @@
             
             <td>
 {{--           
-              <a href="{{ route('commune.show', $com->id) }}" class="btn btn-success"><span class="fas fa-eye"></span> </a>
-            <a href="{{route('commune.edit', $com->id)}}" class="btn btn-warning"><span class="fas fa-edit"></span> </a>
-            </td> --}}
+              <a href="{{ route('commune.show', $com->id) }}" class="btn btn-success"><span class="fas fa-eye"></span> </a>--}}
+            <a href="{{route('communes.edit', $com->id)}}" class="btn btn-warning"><span class="fas fa-edit"></span> </a>
+            </td> 
             <td>
             <form action="{{ route('communes.destroy', $com->id) }}" method="post"> 
               @csrf

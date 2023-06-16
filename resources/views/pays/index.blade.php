@@ -41,7 +41,7 @@
     
     <td>
   
-      <a href="{{ route('pays.show', $pay->id) }}" class="btn btn-success"><span class="fas fa-eye"></span> </a>
+      {{-- <a href="{{ route('pays.show', $pay->id) }}" class="btn btn-success"><span class="fas fa-eye"></span> </a> --}}
     <a href="{{route('pays.edit', $pay->id)}}" class="btn btn-warning"><span class="fas fa-edit"></span> </a>
     </td>
     <td>

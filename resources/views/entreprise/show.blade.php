@@ -45,9 +45,11 @@
     <br>
     <br>
     <strong><span class="info-box-text text-center text-muted">Sigle : {{ $entreprise->sigle }}</span></strong>
-  
+    <br>
+    <strong><span class="info-box-text text-center text-muted">Taille de l'entreprise : {{ $entreprise->tailleEntreprise }}</span></strong>
+    <br>
   </div>
-
+  
   </div>
   </div>
   

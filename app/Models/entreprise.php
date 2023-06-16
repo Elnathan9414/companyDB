@@ -2,11 +2,19 @@
 
 namespace App\Models;
 
+use Database\Factories\entrepriseFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class entreprise extends Model
 {
+    use HasFactory;
+
+
+    protected static function newFactory()
+{
+    return entrepriseFactory::new();
+}
 
     public function pays()
 { 
@@ -28,5 +36,5 @@ public function secteur()
     return $this->belongsTo(Secteur::class); 
 }
 
-    use HasFactory;
+   
 }

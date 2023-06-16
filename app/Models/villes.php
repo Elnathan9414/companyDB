@@ -2,11 +2,18 @@
 
 namespace App\Models;
 
+use Database\Factories\VillesFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class villes extends Model
 {
+    use HasFactory;
+    protected static function newFactory()
+    {
+        return VillesFactory::new();
+    }
+    
     public function pays() 
     { 
         return $this->belongsTo(pays::class); 
@@ -19,5 +26,5 @@ class villes extends Model
     { 
         return $this->hasMany(entreprise::class); 
     }
-    use HasFactory;
+    
 }

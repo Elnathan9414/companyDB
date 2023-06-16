@@ -32,6 +32,16 @@ class EntrepriseController extends Controller
         
     }
 
+    public function ville()
+
+    {
+        $requette = "select *from entreprise";
+        $entreprise = DB::table('entreprises')
+                    ->orderBy('nomEntreprise', 'asc')
+                    ->get();
+        return view('entreprise.selectville', compact( 'entreprise'));
+            
+        }
     /**
      * Show the form for creating a new resource.
      *

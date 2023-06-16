@@ -29,6 +29,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/selectville', [App\Http\Controllers\EntrepriseController::class, 'ville'])->name('selectville');
 //Route::get('/entreprise', [App\Http\Controllers\EntrepriseController::class, 'index'])->name('entreprise');
 //Route::resource('entreprise', App\Http\Controllers\EntrepriseController::class);
 Route::resource('entreprise', EntrepriseController::class);

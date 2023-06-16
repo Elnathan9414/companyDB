@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Company</b>DB',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -314,7 +314,7 @@ return [
         [
             'text'        => 'dashboard',
             'url'         => '/home',
-            'icon'        => 'far fa-fw fa-home',
+            'icon'        => 'fas  fa-home',
             'label'       => 4,
             'label_color' => 'success',
         ],
@@ -335,22 +335,40 @@ return [
             'icon' => 'fas fa-fw fa-city',
         ],
         
-        ['header' => ''],
-        [
-            'text'       => 'Entreprises',
-            'icon_color' => 'red',
-            'url'        => '/entreprise',
-        ],
+        
         [
             'text'       => 'Secteurs d activite',
             'icon_color' => 'yellow',
             'url'        => '/secteurs',
         ],
+        
         [
-            'text'       => 'Villes',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
+            'text'    => 'Entreprises',
+            'submenu' => [
+                [
+                    'text'    => 'Par secteur d activité',
+                    'shift'   => 'ml-3',
+                    'route' => 'entreprise.index',
+                    'icon'  => 'fas  fa-users',
+                    
+                ],
+                [
+                    'text'    => 'Par Ville',
+                    'shift'   => 'ml-3',
+                    'url'        => '/selectville',
+                    'icon'  => 'fas  fa-users',
+                    
+                ],
+
+                [
+                    'text'    => 'Par Taille',
+                    'shift'   => 'ml-3',
+                    'route' => 'entreprise.index',
+                    'icon'  => 'fas  fa-users',
+                    
+                ],
+            ],
+        ]
     ],
 
     /*

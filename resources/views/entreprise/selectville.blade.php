@@ -2,16 +2,16 @@
 @extends('adminlte::page')
 
 @section('content')
-<section class="content-header">
+ <section class="content-header">
     <div class="container-fluid">
     <div class="row mb-2">
     <div class="col-sm-6">
-    <h1>Villes</h1>
+    <h1>Entreprises</h1>
     </div>
     <div class="col-sm-6">
     <ol class="breadcrumb float-sm-right">
     <li class="breadcrumb-item"><a href="/">Acceuil</a></li>
-    <li class="breadcrumb-item active">Villes</li>
+    <li class="breadcrumb-item active">entreprise</li>
     </ol>
     </div>
     </div>
@@ -20,9 +20,9 @@
     
     <section class="content">
     
-    <div class="card" >
+    <div class="card">
     <div class="card-header">
-    <h3 class="card-title">Villes</h3>
+    <h3 class="card-title">Entreprises</h3>
     <div class="card-tools">
     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
     <i class="fas fa-minus"></i>
@@ -31,7 +31,7 @@
     <i class="fas fa-times"></i>
     </button>
     <div class="d-flex justify-content-end">
-        <a href="{{route('villes.create')}}" class="btn btn-primary"><span class="fa fa-plus-circle"></span> Ajouter</a>
+        <a href="{{route('entreprise.create')}}" class="btn btn-primary"><span class="fa fa-plus-circle"></span> Ajouter</a>
      </div>
     </div>
     </div>
@@ -43,31 +43,38 @@
     id
     </th>
     <th style="width: 20%">
-    Pays
+    Nom de l'entreprise
     </th>
     <th style="width: 30%">
     Ville
     </th>
-    <th style="width: 1%">
-      Actions
-      </th>
-    
+    <th>
+    Quartier
+    </th>
+    <th style="width: 8%" class="text-center">
+    Nom du responsable
+    </th>
+    <th style="width: 20%">
+    </th>
+    </tr>
     </thead>
 
     <tbody>
     
         <tr>
-            @foreach ($ville as $vil )
-            <td>{{$vil->id}}</td>
-            <td>{{$vil->pays->libelePays}}</td>
-            <td>{{$vil->libeleVille}}</td>
-            
-            
+            @foreach ($entreprise as $ent )
+            <td>{{$ent->id}}</td>
+            <td>{{$ent->nomEntreprise}}</td>
+            <td>{{$ent->sigle}}</td>
+            <td>{{$ent->quartier}}</td>
+            <td>{{$ent->nomResponsable}}</td>
             <td>
-            <a href="{{route('villes.edit', $vil->id)}}" class="btn btn-warning"><span class="fas fa-edit"></span> </a>
+          
+              <a href="{{ route('entreprise.show', $ent->id) }}" class="btn btn-success"><span class="fas fa-eye"></span> </a>
+            <a href="{{route('entreprise.edit', $ent->id)}}" class="btn btn-warning"><span class="fas fa-edit"></span> </a>
             </td>
             <td>
-            <form action="{{ route('villes.destroy', $vil->id) }}" method="post">
+            <form action="{{ route('entreprise.destroy', $ent->id) }}" method="post">
               @csrf
               @method('DELETE')
               <button type="submit" class="btn btn-danger"><span class="fa fa-times-circle"></span>  </button>
@@ -77,6 +84,8 @@
       </div>
       </tr>
       @endforeach
-    </section>
+    </section> 
+
+    
 @endsection
     
