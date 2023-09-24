@@ -58,7 +58,7 @@
     
         <tr>
             @foreach ($secteur as $sec )
-            <td>{{$sec->id}}</td>
+            <th scope="row">{{$loop->index +1}}</th>
             <td>{{$sec->libelleSecteur}}</td>
             <td>{{$sec->description}}</td>
             

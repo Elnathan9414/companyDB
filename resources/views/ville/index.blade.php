@@ -22,7 +22,7 @@
     
     <div class="card" >
     <div class="card-header">
-    <h3 class="card-title">Villes</h3>
+    
     <div class="card-tools">
     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
     <i class="fas fa-minus"></i>
@@ -35,6 +35,33 @@
      </div>
     </div>
     </div>
+    <div class="card-body">
+ 
+    
+       <!-- Search Widget -->
+    <div class="card my-4">
+      <h5 class="card-header">Recherche</h5>
+      <form class="card-body" action="{{route('search')}}"  method="GET">
+          {{-- {{ csrf_field() }} --}}
+          <div class="input-group">
+              <input type="text" class="form-control" placeholder="Rechercher..." name="search">
+              <span class="input-group-btn">
+          <button class="btn btn-info" type="submit">Chercher</button>
+        </span>
+          </div>
+      </form>
+  </div>
+    </div>
+  
+    {{-- <div class="card-footer">
+    {{-- <button type="submit" class="btn btn-warning"> <span class="fas fa-search">  </span>Chercher
+      {{ __('Search') }}
+    </button> --}}
+    {{-- <button type='submit' class=' btn btn-primary'><span class="fas fa-search">  </span>
+       {{ __('Search') }}
+     </button>
+    </div> --}} 
+  
     <div class="card-body p-0">
     <table class="table table-striped projects">
     <thead>
@@ -58,7 +85,7 @@
     
         <tr>
             @foreach ($ville as $vil )
-            <td>{{$vil->id}}</td>
+            <th scope="row">{{$loop->index +1}}</th>
             <td>{{$vil->pays->libelePays}}</td>
             <td>{{$vil->libeleVille}}</td>
             

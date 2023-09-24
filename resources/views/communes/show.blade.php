@@ -154,7 +154,7 @@
   </section>
   
   
-  
+  {{ $commune->onEachSide(5)->links() }}
   
   
 

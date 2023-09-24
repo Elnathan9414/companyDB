@@ -346,7 +346,7 @@ return [
             'text'    => 'Entreprises',
             'submenu' => [
                 [
-                    'text'    => 'Par secteur d activité',
+                    'text'    => 'Liste des entreprises',
                     'shift'   => 'ml-3',
                     'route' => 'entreprise.index',
                     'icon'  => 'fas  fa-users',
@@ -356,15 +356,29 @@ return [
                     'text'    => 'Par Ville',
                     'shift'   => 'ml-3',
                     'url'        => '/selectville',
-                    'icon'  => 'fas  fa-users',
+                    'icon'  => 'fas  fa-city',
                     
                 ],
 
                 [
                     'text'    => 'Par Taille',
                     'shift'   => 'ml-3',
-                    'route' => 'entreprise.index',
-                    'icon'  => 'fas  fa-users',
+                    'url' => '/selecttaille',
+                    'icon'  => 'fas  fa-map',
+                    
+                ],
+                [
+                    'text'    => 'Par Commune',
+                    'shift'   => 'ml-3',
+                    'url' => '/selectcommune',
+                    'icon'  => 'fas  fa-pen',
+                    
+                ],
+                [
+                    'text'    => 'Par Secteur d activité',
+                    'shift'   => 'ml-3',
+                    'url' => '/selectsecteur',
+                    'icon'  => 'fas  fa-plus',
                     
                 ],
             ],
@@ -407,22 +421,25 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
+                    
+                    
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                    'asset' => true,
+                    'location' => '//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css',
+                    //'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
             ],
         ],
@@ -442,7 +459,7 @@ return [
             ],
         ],
         'Chartjs' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',

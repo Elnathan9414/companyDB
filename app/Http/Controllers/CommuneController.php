@@ -19,7 +19,11 @@ class CommuneController extends Controller
     public function index()
     {
         
-        $commune = Commune::all();
+        $commune = Commune::get();
+        // $commune = DB::table('communes')
+        // ->orderBy('libelleCommune', 'asc')
+        // //   ->get();
+        //    ->simplePaginate(5);
         return view('communes.index', compact('commune'));
     }
 

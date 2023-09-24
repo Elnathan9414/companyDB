@@ -9,8 +9,10 @@ use App\Models\pays;
 use App\Models\villes;
 use App\Models\Commune;
 use App\Models\Secteur;
+use Database\Factories\communesFactory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use JeroenNoten\LaravelAdminLte\View\Components\Form\Select;
 
 class EntrepriseController extends Controller
 {
@@ -25,23 +27,69 @@ class EntrepriseController extends Controller
     //     return view('entreprise.index', compact('entreprise'));
     public function index()
 {
-    $entreprise = DB::table('entreprises')
-                ->orderBy('nomEntreprise', 'asc')
-                ->get();
+    // $entreprise = DB::table('entreprises')
+    //             ->orderBy('nomEntreprise', 'asc')
+    //             ->get();
+    $entreprise=entreprise::all();
+   
+   
+   if (request()->has('search')) {
+    $entreprise->where('nomEntreprise', 'Like', '%' . request()->input('search') . '%');
+                }
     return view('entreprise.index', compact( 'entreprise'));
         
     }
 
-    public function ville()
+    public function villes ()
 
     {
-        $requette = "select *from entreprise";
-        $entreprise = DB::table('entreprises')
-                    ->orderBy('nomEntreprise', 'asc')
-                    ->get();
-        return view('entreprise.selectville', compact( 'entreprise'));
+       $entreprise=entreprise::all()->sortByDesc('ville');
+       $ville=villes::all();
+       // $ville = $request->input('ville_id');
+        // $requette = "select *from entreprise";
+        // $entreprise = DB::table('entreprises')->where('quartier', 'ville')
+        //             ->orderBy('nomEntreprise', 'asc')
+        //             ->get();
+                    
+        return view('entreprise.selectville', compact( 'entreprise', 'ville'));
             
         }
+    
+        
+public function recherche ()
+{
+    return view('entreprise.recherche');
+}
+
+
+
+public function tailles ()
+{
+    return view('entreprise.selecttaille');
+}
+
+public function communes ()
+{
+    $entreprise=entreprise::all();
+    $commune=Commune::all();
+    return view('entreprise.selectcommune', compact('entreprise', 'commune'));
+}
+
+public function secteurs ()
+{
+   
+// $secteur=DB::select('select id, libelleSecteur from secteurs');
+// $entreprise= DB::table('entreprises')->get();
+// //->orderBy('secteur_id', 'asc')
+// //         ->get();
+// //->simplePaginate(5);
+//$secteur=secteur::all()->sortByDesc('secteur');
+$secentreprise = DB::table('entreprises')->where('secteur_id')->value('secteur_id');
+
+
+    return view('entreprise.selectsecteur', compact('secentreprise'));
+}
+ 
     /**
      * Show the form for creating a new resource.
      *

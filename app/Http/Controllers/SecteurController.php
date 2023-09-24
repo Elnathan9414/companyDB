@@ -68,7 +68,8 @@ class SecteurController extends Controller
      */
     public function edit(Secteur $secteur)
     {
-        //
+        //$secteur=Secteur::all();
+        return view('secteur.edit');
     }
 
     /**
@@ -80,7 +81,8 @@ class SecteurController extends Controller
      */
     public function update(UpdateSecteurRequest $request, Secteur $secteur)
     {
-        //
+        $secteur->update($request->all());
+        return redirect()->route('secteur.index')->with('info', 'La déclaration a bien été modifié');
     }
 
     /**

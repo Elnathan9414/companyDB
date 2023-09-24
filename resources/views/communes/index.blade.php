@@ -61,10 +61,10 @@
     
         <tr>
             @foreach ($commune as $com )
-            <td>{{$com->id}}</td>
-            <td>{{$com->pays->libelePays}}</td>
-            <td>{{$com->Ville->libeleVille}}</td>
-            <td>{{$com->libelleCommune}}</td>
+            <th scope="row">{{$loop->index +1}}</th>
+            <td>{{$com->pays->libelePays}}</td> 
+            <td>{{$com->Ville->libeleVille}}</td> 
+             <td>{{$com->libelleCommune}}</td> 
             
             
             <td>

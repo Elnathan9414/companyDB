@@ -9,16 +9,19 @@
     
   <h3 class="card-title">Liste des pays</h3>
   <div class="card-tools">
-    
+   <form action="{{ route('pays.index') }}" method="post">
   <div class="input-group input-group-sm" style="width: 150px;">
-  <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+    
+  <input type="search" name="search" class="form-control float-right" placeholder="Search" value="{{ request()->input('search') }}">
   <div class="input-group-append">
-  <button type="submit" class="btn btn-default">
+  <button type="submit" class="btn btn-default" >
   <i class="fas fa-search"></i>
+     {{ __('Search') }}
   </button>
   
   </div>
   </div>
+</form> 
   </div>
   </div>
   <div class="d-flex justify-content-end">
@@ -63,6 +66,6 @@
   
   </div>
   
-    
+   {{ $pays->onEachSide(5)->links() }} 
 @endsection
     

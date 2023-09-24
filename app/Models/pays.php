@@ -10,15 +10,7 @@ class pays extends Model
 {
     use HasFactory;
 
-    protected static function newFactory()
-    {
-        return PaysFactory::new();
-    }
-
-
-
-
-
+    
     public function ville() 
     { 
         return $this->hasMany(villes::class); 

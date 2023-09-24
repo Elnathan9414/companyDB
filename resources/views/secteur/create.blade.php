@@ -24,7 +24,7 @@
     <div class="col-md-12">
     <div class="card card-info">
     <div class="card-header">
-    <h3 class="card-title">Ville</h3>
+    <h3 class="card-title">Secteur d activité</h3>
     </div>
     <div class="card-body">
         <form method="POST" action="{{route('secteurs.store')}}" enctype="multipart/form-data">

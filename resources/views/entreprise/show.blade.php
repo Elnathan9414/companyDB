@@ -60,13 +60,13 @@
     
     <h3 class="timeline-header no-border"><a href="#">Localisation</a> </h3>
     <br>
-    <strong><span class="info-box-text text-center text-muted">Pays: {{ $entreprise->Pays }}</span></strong>
+    <strong><span class="info-box-text text-center text-muted">Pays: {{ $entreprise->Pays->libelePays }}</span></strong>
     <br>
-    <strong><span class="info-box-text text-center text-muted">Region : {{ $entreprise->region }}</span></strong>
+    {{-- <strong><span class="info-box-text text-center text-muted">Region : {{ $entreprise->region }}</span></strong>
+    <br> --}}
+    <strong><span class="info-box-text text-center text-muted">Ville : {{ $entreprise->Ville->libeleVille }}</span></strong>
     <br>
-    <strong><span class="info-box-text text-center text-muted">Ville : {{ $entreprise->Ville }}</span></strong>
-    <br>
-    <strong><span class="info-box-text text-center text-muted">Arrondissement : {{ $entreprise->arrondissement }}</span></strong>
+    <strong><span class="info-box-text text-center text-muted">Arrondissement : {{ $entreprise->commune->libelleCommune }}</span></strong>
     <br>
     <strong><span class="info-box-text text-center text-muted">Quartier : {{ $entreprise->quartier }}</span></strong>
     <br>

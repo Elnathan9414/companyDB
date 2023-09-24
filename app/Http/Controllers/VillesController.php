@@ -6,6 +6,8 @@ use App\Http\Requests\StorevillesRequest;
 use App\Http\Requests\UpdatevillesRequest;
 use App\Models\villes;
 use App\Models\pays;
+use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\DB;
 
 class VillesController extends Controller
@@ -17,7 +19,8 @@ class VillesController extends Controller
      */
     public function index()
     {
-        $ville=villes::all();
+        $ville=villes::all() ->sortByDesc('libeleVille');
+     
         return view('ville.index', compact('ville'));
     }
 
@@ -33,6 +36,20 @@ class VillesController extends Controller
         return view('ville.create', compact('ville', 'pays'));
     }
 
+    public function search(HttpRequest $request, villes $ville)
+    {
+        $ville=villes::all();
+        if (request()->has('search')) {
+            $ville->where('libeleVille', 'Like', '%' . request()->input('search') . '%')
+            ->orderByAsc('libeleVille');
+                        }
+            return view('ville.index', compact( 'ville'));
+                
+            }
+        
+    
+      
+    
     /**
      * Store a newly created resource in storage.
      *

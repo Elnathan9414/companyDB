@@ -16,12 +16,16 @@ class paysController extends Controller
      */
     public function index()
     {
-       // $pays=pays::all();
-        $pays = DB::table('pays')
+        
+       
+         $pays = DB::table('pays')
                 ->orderBy('libelePays', 'asc')
-                ->get();
+        //         ->get();
+                ->simplePaginate(5);
         $nbpays = DB::table('pays')
                 ->count();
+       // $pays = DB::table('pays')->cursorPaginate(10);
+      
         return view('pays.index', compact('pays', 'nbpays'));
     }
 

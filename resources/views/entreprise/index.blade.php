@@ -1,81 +1,80 @@
 
-@extends('adminlte::page')
+@extends('adminlte::page', ['iFrameEnabled' => false])
 
 @section('content')
-<div class="col-12">
-  <div class="card">
-  <div class="card-header">
-    
-  <h3 class="card-title">Liste des entreprises</h3>
-  <div class="card-tools">
-    
-  <div class="input-group input-group-sm" style="width: 150px;">
-  <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-  <div class="input-group-append">
-  <button type="submit" class="btn btn-default">
-  <i class="fas fa-search"></i>
-  </button>
-  
-  </div>
-  </div>
-  </div>
-  </div>
-  <div class="d-flex justify-content-end">
-    <a href="{{route('entreprise.create')}}" class="btn btn-secondary"><span class="fa fa-plus-circle"></span> Ajouter</a>
- </div>
-    
-    
-    <div class="card-body p-0">
-    <table class="table table-striped projects">
-    <thead>
-    <tr>
-    <th style="width: 1%">
-    id
-    </th>
-    <th style="width: 20%">
-    Nom de l'entreprise
-    </th>
-    <th style="width: 30%">
-    Ville
-    </th>
-    <th>
-    Quartier
-    </th>
-    <th style="width: 8%" class="text-center">
-    Nom du responsable
-    </th>
-    <th style="width: 20%">
-    </th>
-    </tr>
-    </thead>
 
-    <tbody>
-    
+<div class="card">
+    <div class="card-header">
+         
+    <h2 class="card-title">Liste des entreprises</h2>
+    <div class="d-flex justify-content-end">
+        <a href="{{route('entreprise.create')}}" class="btn btn-warning"><span class="fa fa-plus-circle"></span> Ajouter</a>
+     </div>
+    </div>
+   {{-- Setup data for datatables --}}
+@php
+$heads = [
+    'ID',
+    'Entreprise',
+    'Sigle',
+    'Quartier',
+    'Responsable',
+    'Titre',
+   // ['label' => 'Phone', 'width' => 40],
+    ['label' => 'Actions', 'no-export' => true, 'width' => 5],
+];
+
+$btnEdit = '<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
+                <i class="fa fa-lg fa-fw fa-pen"></i>
+              
+            </button>';
+$btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
+                  <i class="fa fa-lg fa-fw fa-trash"></i>
+              </button>';
+$btnDetails = '<button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details">
+                   <i class="fa fa-lg fa-fw fa-eye"></i>
+               </button>';
+
+
+$entData  = array();
+foreach ($entreprise as $ent) {
+    # code...
+    $entData []= [
+        $ent->id,
+        $ent->nomEntreprise,
+        $ent->sigle,
+        $ent->quartier,
+        $ent->nomResponsable,
+        $ent->tireResponsable,
+        '<nobr><a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Show" href="'.url("entreprise/{$ent->id}").'"> <i class="fa fa-lg fa-fw fa-eye"></i></a> <a class="btn btn-xs btn-default text-success mx-1 shadow" title="Editer" href="'.url("entreprise/{$ent->id}/edit").'"> <i class="fa fa-lg fa-fw fa-pen"></i></a> <a class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete" href="'.url("entreprise/{$ent->id}").'"> <i class="fa fa-lg fa-fw fa-trash"></i></a></nobr>',
+       // '<nobr><a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Show" href="'.url("entreprise/{$ent->id}").'"> <i class="fa fa-lg fa-fw fa-eye"></i></a></nobr>'
+
+];
+}  
+
+
+$config = [
+    'order' => [[1, 'asc']],
+    'columns' => [null, null, null, null, null, null, ['orderable' => false]],
+];
+$config['data'] = $entData;
+@endphp
+
+{{-- Minimal example / fill data using the component slot
+<x-adminlte-datatable id="table1" :heads="$heads">
+    @foreach($config['data'] as $row)
         <tr>
-            @foreach ($entreprise as $ent )
-            <td>{{$ent->id}}</td>
-            <td>{{$ent->nomEntreprise}}</td>
-            <td>{{$ent->sigle}}</td>
-            <td>{{$ent->quartier}}</td>
-            <td>{{$ent->nomResponsable}}</td>
-            <td>
-          
-              <a href="{{ route('entreprise.show', $ent->id) }}" class="btn btn-success"><span class="fas fa-eye"></span> </a>
-            <a href="{{route('entreprise.edit', $ent->id)}}" class="btn btn-warning"><span class="fas fa-edit"></span> </a>
-            </td>
-            <td>
-            <form action="{{ route('entreprise.destroy', $ent->id) }}" method="post">
-              @csrf
-              @method('DELETE')
-              <button type="submit" class="btn btn-danger"><span class="fa fa-times-circle"></span>  </button>
-        
-          </form>
-          </td>
-      </div>
-      </tr>
-      @endforeach
-    </section> 
+            @foreach($row as $cell)
+                <td>{!! $cell !!}</td>
+            @endforeach
+        </tr>
+    @endforeach
+</x-adminlte-datatable> --}}
 
-    
+{{-- Compressed with style options / fill data using the plugin config --}}
+<x-adminlte-datatable id="table2" :heads="$heads" head-theme="dark" :config="$config"
+    striped hoverable bordered compressed/>
 @endsection
+
+
     
